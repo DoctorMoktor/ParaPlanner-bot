@@ -4,7 +4,11 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-BOT_TOKEN = "8455749786:AAFK-e7LIQ_t1a2Oon2jeGmxo45mTvtoo0k"
+import os
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+if not BOT_TOKEN:
+    raise ValueError("Не найден токен бота! Установите переменную окружения BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -201,4 +205,5 @@ async def main():
 
 
 if __name__ == "__main__":
+
     asyncio.run(main())

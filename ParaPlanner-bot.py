@@ -134,7 +134,7 @@ async def create_plan(message: types.Message):
 
         # Таймеры:
         asyncio.create_task(close_plan_after_hour(message.chat.id, sent_msg.message_id))
-        asyncio.create_task(delete_bot_message_after_hours(sent_msg.chat.id, sent_msg.message_id, 1.5))  # 1.5 часа
+        asyncio.create_task(delete_bot_message_after_hours(sent_msg.chat.id, sent_msg.message_id, 0.05))  # 1.5 часа
 
 
 # === Обработка кнопок ===
@@ -151,7 +151,7 @@ async def join_plan(callback: types.CallbackQuery):
 
 # === Закрытие плана через 1 час ===
 async def close_plan_after_hour(chat_id: int, msg_id: int):
-    await asyncio.sleep(3600)  # 1 час
+    await asyncio.sleep(120)  # 1 час
 
     plan = plans.get(msg_id)
     if not plan:
@@ -207,3 +207,4 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
